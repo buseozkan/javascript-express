@@ -26,7 +26,7 @@ const addToArray = (element, array) => {
 };
 
 const addToArray2 = (element, array) => {
-  return array2 = [...array, element];
+  return array.concat(element);
 };
 
 const removeNthElement = (index, array) => {
