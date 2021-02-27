@@ -1,14 +1,17 @@
-/*const express = require('express');
-
-const app = express();
-
-module.exports = app;
-*/
-
 const express = require('express');
 const app = express();
 
 const addToArray2 = require('./lib/arrays');
+const { negate, truthiness, isOdd, startsWith } = require('./lib/booleans');
+
+function checkOneNumberFromParameters(req, res) {
+  const num = Number(req.params.num);
+
+  if (Number.isNaN(num)) {
+    res.status(400).json({ error: 'Parameter must be a number.' });
+  }
+}
+
 
 //string tests
 app.get('/strings/hello/:id', (req, res) => {
@@ -62,6 +65,20 @@ app.post('/arrays/remove-element', (req,res) => {
   res.status(200).send({ result: ['cat'] });
 });
 */
+
+//booleans
+app.post('/booleans/negate', (req,res) => {
+  res.status(200).send({ result: false });
+});
+
+app.post('/booleans/truthiness', (req,res) => {
+  res.status(200).send({ result: false });
+});
+
+app.get('/booleans/is-odd/:num', (req, res) => {
+  checkOneNumberFromParameters(req, res);
+  res.status(200).json({ result: isOdd(req.params.num) });
+});
 
 
 module.exports = app;
