@@ -1,4 +1,5 @@
 const express = require('express');
+const sayHello = require ('./lib/strings');
 const app = express();
 
 const addToArray2 = require('./lib/arrays');
@@ -16,6 +17,10 @@ function checkOneNumberFromParameters(req, res) {
 //string tests
 app.get('/strings/hello/:id', (req, res) => {
   res.status(200).send({ result: 'Hello, world!'});
+});
+
+app.get('/strings/hello/:string', (req, res) => {
+  res.json({result: sayHello(req.params.string) });
 });
 
 app.get('/strings/lower/HELLO', (req, res) => {
